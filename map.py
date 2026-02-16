@@ -39,6 +39,41 @@ def define_map(map_size):
     i += 1
   return map
 
+def movement_check(map, map_size):
+  global player_location
+  if player_location % 3 == 0:  
+      while True:
+        move = input('Where would you like to move? (L)eft (R)ight\n>').strip().lower()
+        if move == 'l':
+          print('You moved left yay')
+          map[player_location] = '⚫'
+          player_location += 1
+          clear()
+          print_map(map, map_size)
+          break
+        elif move == 'r':
+          print('You moved right yay')
+          map[player_location] = '⚫'
+          player_location += 2
+          clear()
+          print_map(map,map_size)
+          break
+        else:
+          print('invalid input')
+  elif player_location % 3 == 1:
+    map[player_location] = '⚫'
+    player_location += 2
+    input('>')
+    clear()
+    print_map(map, map_size)
+  elif player_location % 3 == 2:
+    map[player_location] = '⚫'
+    player_location += 1
+    input('>')
+    clear()
+    print_map(map, map_size)
+
+
 def main():
   global player_location
   print('This is for testing the node map type')
@@ -63,41 +98,18 @@ def main():
       print('that\'s not an option cuh.')
   print()
   map = define_map(map_size)
+  true_map = list(map)
   print_map(map, map_size)
   
   
   while player_location < map_size -1:
-    if player_location % 3 == 0:  
-      while True:
-        move = input('Where would you like to move? (L)eft (R)ight\n>').strip().lower()
-        if move == 'l':
-          print('You moved left yay')
-          map[player_location] = '⚫'
-          player_location += 1
-          clear()
-          print_map(map, map_size)
-          break
-        elif move == 'r':
-          print('You moved right yay')
-          map[player_location] = '⚫'
-          player_location += 2
-          clear()
-          print_map(map,map_size)
-          break
-        else:
-          print('invalid input')
-    elif player_location % 3 == 1:
-      map[player_location] = '⚫'
-      player_location += 2
-      input('>')
-      clear()
-      print_map(map, map_size)
-    elif player_location % 3 == 2:
-      map[player_location] = '⚫'
-      player_location += 1
-      input('>')
-      clear()
-      print_map(map, map_size)
+    movement_check(map, map_size)
+    if true_map[player_location] == '⚔':
+      print('Fight space')
+    elif true_map[player_location] == '🪙':
+      print('Treasure space')
+    elif true_map[player_location] == '⛺':
+      print('Rest space')
     
 
 
