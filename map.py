@@ -6,6 +6,7 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_map(map, map_size):
+  """Takes map_size and draws the map based on the size."""
   if map_size == 4:
     print(f'     {map[0]}\n    /  \\\n  {map[1]}    {map[2]}\n    \\  /\n     {map[3]}')  
   elif map_size == 7:
@@ -15,6 +16,7 @@ def print_map(map, map_size):
   
 
 def define_map(map_size):
+  """Creates emoji icons for different space types based on random choice and appends them to the 'map' list."""
   i = 1
   map = ['🔻']
   while i < map_size:
@@ -51,6 +53,3 @@ def main():
 
 if __name__ == "__main__":
   main()
-
-
-
