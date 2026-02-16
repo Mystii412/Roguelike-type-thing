@@ -9,9 +9,9 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_map(og_map, map_size):
-  """Takes map_size and draws the map based on the size."""
   global player_location, player
   map = og_map
+  """Takes map_size and draws the map based on the size."""
   if map_size == 4:
     map[player_location] = player
     print(f'     {map[0]}\n    /  \\\n  {map[1]}    {map[2]}\n    \\  /\n     {map[3]}')  
@@ -72,12 +72,14 @@ def main():
         move = input('Where would you like to move? (L)eft (R)ight\n>').strip().lower()
         if move == 'l':
           print('You moved left yay')
+          map[player_location] = '⚫'
           player_location += 1
           clear()
           print_map(map, map_size)
           break
         elif move == 'r':
           print('You moved right yay')
+          map[player_location] = '⚫'
           player_location += 2
           clear()
           print_map(map,map_size)
@@ -85,11 +87,13 @@ def main():
         else:
           print('invalid input')
     elif player_location % 3 == 1:
+      map[player_location] = '⚫'
       player_location += 2
       input('>')
       clear()
       print_map(map, map_size)
     elif player_location % 3 == 2:
+      map[player_location] = '⚫'
       player_location += 1
       input('>')
       clear()
