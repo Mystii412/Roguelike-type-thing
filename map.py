@@ -9,9 +9,9 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_map(og_map, map_size):
+  """Takes map_size and draws the map based on the size."""
   global player_location, player
   map = og_map
-  """Takes map_size and draws the map based on the size."""
   if map_size == 4:
     map[player_location] = player
     print(f'     {map[0]}\n    /  \\\n  {map[1]}    {map[2]}\n    \\  /\n     {map[3]}')  
