@@ -9,18 +9,18 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_map(og_map, map_size):
+  """Takes map_size and draws the map based on the size."""
   global player_location, player
   map = og_map
-  """Takes map_size and draws the map based on the size."""
   if map_size == 4:
     map[player_location] = player
-    print(f'     {map[0]}\n    /  \\\n  {map[1]}    {map[2]}\n    \\  /\n     {map[3]}')  
+    print(f'     {map[0]}\n    /  \\\n   {map[1]}   {map[2]}\n    \\  /\n     {map[3]}')  
   elif map_size == 7:
     map[player_location] = player
-    print(f'     {map[0]}\n    /  \\\n  {map[1]}    {map[2]}\n    \\  /\n     {map[3]}\n    /  \\\n   {map[4]}  {map[5]}\n    \\  /\n     {map[6]}')
+    print(f'     {map[0]}\n    /  \\\n   {map[1]}   {map[2]}\n    \\  /\n     {map[3]}\n    /  \\\n   {map[4]}  {map[5]}\n    \\  /\n     {map[6]}')
   elif map_size == 10:
     map[player_location] = player
-    print(f'     {map[0]}\n    /  \\\n  {map[1]}    {map[2]}\n    \\  /\n     {map[3]}\n    /  \\\n   {map[4]}  {map[5]}\n    \\  /\n     {map[6]}\n    /  \\\n   {map[7]}  {map[8]}\n    \\  /\n     {map[9]}')
+    print(f'     {map[0]}\n    /  \\\n   {map[1]}   {map[2]}\n    \\  /\n     {map[3]}\n    /  \\\n   {map[4]}  {map[5]}\n    \\  /\n     {map[6]}\n    /  \\\n   {map[7]}  {map[8]}\n    \\  /\n     {map[9]}')
   
 
 def define_map(map_size):
@@ -40,6 +40,7 @@ def define_map(map_size):
   return map
 
 def movement_check(map, map_size):
+  """Checks where the player can move, and asks for input to move there"""
   global player_location
   if player_location % 3 == 0:  
       while True:
