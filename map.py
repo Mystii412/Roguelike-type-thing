@@ -4,6 +4,16 @@ import os
 player_location = 0
 player = '🔻'
 
+class Enemy:
+  def __init__(self, name:str, health:int, attack:int, drops = []):
+    self.name = name
+    self.health = health
+    self.attack = attack
+    self.drops = drops
+
+enemy1 = Enemy('Enemy', 100, 20, ['drop1', 'drop2'])
+enemy2 = Enemy('Enemy2', 110, 25, ['drop3', 'drop4'])
+
 def clear():
     # 'nt' is for Windows, 'posix' is for macOS and Linux
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -75,6 +85,56 @@ def movement_check(map, map_size):
     print_map(map, map_size)
 
 
+def room(space):
+  if space == 'fight':
+    print('fight space')
+    fight_space()
+  elif space == 'treasure':
+    print('treasure space')
+  elif space == 'rest':
+    print('rest space')
+
+def print_menu(menu):
+  if menu == 'attack':
+    print('Attack menu yessir')
+  elif menu == 'item':
+    print('Items menu yessir')
+  elif menu == 'magic':
+    print('imagine using magic you fucking nerd')
+
+def fight_space():
+  clear()
+  enemy = random.randint(0,1)
+  if enemy == 0:
+    enemyy = enemy1
+  elif enemy == 1:
+    enemyy = enemy2
+  name = enemyy.name
+  health = enemyy.health
+  attack = enemyy.attack
+  while True:
+    clear()
+    print(f"Name: {name}")
+    print(f'Health: {health}')
+    print(f"Attack: {attack}")
+    print('=====================')
+    print('|(A)ttack  |  (I)tem|')
+    print('|----------|--------|')
+    print('|(M)agic   |  (F)lee|')
+    choice = input('> ').strip().lower()
+    if choice == 'a':
+      menu = 'attack'
+    elif choice == 'i':
+      menu = 'item'
+    elif choice == 'm':
+      menu = 'magic'
+    elif choice == 'f':
+      print('Flee failed...')
+    print_menu(menu)
+    input('> ')
+  
+
+
 def main():
   global player_location
   print('This is for testing the node map type')
@@ -106,11 +166,13 @@ def main():
   while player_location < map_size -1:
     movement_check(map, map_size)
     if true_map[player_location] == '⚔':
-      print('Fight space')
+      space = 'fight'
     elif true_map[player_location] == '🪙':
-      print('Treasure space')
+      space = 'treasure'
     elif true_map[player_location] == '⛺':
-      print('Rest space')
+      space = 'rest'
+    room(space)
+    
     
 
 
